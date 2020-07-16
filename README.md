@@ -6,6 +6,7 @@ This project contains a Docker image for stable
 
 ## Usage
 
+
 The `otp` command is available as a shortcut for `java -jar otp.jar`:
 
     docker run \
