@@ -11,10 +11,10 @@ The `otp` command is available as a shortcut for `java -jar otp.jar`:
 
 ```bash
     docker run \
-        -e JAVA_MX=8G \
+        -e JAVA_MX=16G \
         -v $PWD:/data:ro \
         -p 8080:8080 \
-        openmove/opentripplanner:1.4.0 \
+        openmove/opentripplanner:1.4.1 \
         otp --build /data --inMemory
 ```
 
