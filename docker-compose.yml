@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+  default:
+    driver: bridge
+
+services:
+  otp:
+    container_name: openmove-otp
+    ports: ["8080:8080"]
+    image: openmove/opentripplanner:1.4.1
+    # build:
+    #   args:
+    #       #TODO CONFIG: ./conf/config.json
+    #       #TODO LOG_FILE: ./log/access.log
+    environment:
+      #TODO - JAVA_OPTIONS=-Xmx4G      
+      - ENV BRANCH=v1.4.0
+      - BRANCH_ALIAS=1.4.0
+      - JAVA_MX=4G
+    volumes:
+      #TODO - ./log/:/log/
+    restart: always
