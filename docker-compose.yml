@@ -7,6 +7,7 @@ networks:
 services:
   otp:
     container_name: openmove-otp
+    #ports: ["${PORT}:8080"]
     ports: ["8080:8080"]
     image: openmove/opentripplanner:1.4.1
     # build:
@@ -18,6 +19,6 @@ services:
       - ENV BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
       - JAVA_MX=4G
-    volumes:
+    #volumes:
       #TODO - ./log/:/log/
     restart: always

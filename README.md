@@ -26,5 +26,11 @@ After the graph has been built, the planner is available at port *8080*.
 
 ### Docker Compose
 
-defines the basic configuration and running multi-container Docker applications
+In addition the file `docker-compose.yml` contains a basic configuration 
+to running multi-container Docker applications.
 
+require *docker-compose* installed in the system.
+
+```bash
+docker-compose up -d 
+```
