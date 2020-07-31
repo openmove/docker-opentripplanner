@@ -16,7 +16,7 @@ docker run \
 	-v $PWD:/data \
 	-p 8080:8080 \
 	openmove/opentripplanner:1.4.1 \
-	otp --build /data --inMemory
+	otp.sh --build /data --inMemory
 ```
 
 ## Execute OTP instance
@@ -27,7 +27,7 @@ docker run \
 	-v $PWD:/data \
 	-p 8080:8080 \
 	openmove/opentripplanner:1.4.1 \
-	otp --graphs /data --router openmove --server
+	otp.sh --graphs /data --router openmove --server
 ```
 
 After the graph has been built, the planner is available at port *8080*.

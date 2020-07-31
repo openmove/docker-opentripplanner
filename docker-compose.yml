@@ -20,6 +20,6 @@ services:
       - BRANCH_ALIAS=1.4.0
       - JAVA_MX=4G
     volumes:
-      - :/data
+      - ./data/:/data/
       #TODO - ./log/:/log/
     restart: always
