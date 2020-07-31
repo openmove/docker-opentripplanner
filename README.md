@@ -5,7 +5,7 @@ This project contains a Docker image for stable
 [OpenTripPlanner](http://opentripplanner.org) releases.
 
 
-```build_image.sh``` build docker image
+```build_graph.sh``` build data graph
 ```otp.sh``` a shortcut for command `java -jar otp.jar`
 
 ## First build Graph and Cache
@@ -26,7 +26,7 @@ docker run \
 	-e JAVA_MX=10G \
 	-v $PWD:/data \
 	-p 8080:8080 \
-	otp:latest \
+	openmove/opentripplanner:1.4.1 \
 	otp --graphs /data --router openmove --server
 ```
 
