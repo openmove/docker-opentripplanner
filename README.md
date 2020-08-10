@@ -22,7 +22,7 @@ node index.js ../data/200804_ExportGTFS
 ```javascript
 {
 	stops: 4669,
-	buffer: 10,
+	buffer: 10,	//buffered in kilometers
 	bbox:
 	'46.01005848495291,10.000282971097848,47.32428314950289,12.86105887382695',
 	bboxfinder:
