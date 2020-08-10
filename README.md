@@ -8,6 +8,16 @@ This project contains a Docker image for stable
 ```build_graph.sh``` build data graph
 ```otp.sh``` a shortcut for command `java -jar otp.jar`
 
+## Download data
+
+calculate bounding box with buffer from GTFS directory
+
+```bash
+cd gtfs2bbox/
+npm install
+node index.js ../data/200804_ExportGTFS
+```
+
 ## First build Graph and Cache
 
 ```bash

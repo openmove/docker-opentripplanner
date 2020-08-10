@@ -1,0 +1,15 @@
+{
+  "name": "gtfs2bbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@transit/gtfs": "^3.0.0",
+    "@turf/turf": "^5.1.6"
+  }
+}
