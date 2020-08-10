@@ -30,6 +30,7 @@ var bboxFlip = [bbox[1],bbox[0], bbox[3],bbox[2]];
 
 console.log({
 	stops: points.length,
+	buffer: bufferInKm,
 	bbox: bboxFlip.toString(),
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 });
