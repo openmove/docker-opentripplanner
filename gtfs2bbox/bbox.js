@@ -42,8 +42,8 @@ var bboxFlip = bboxFlip(bbox);
 var out = {
 	stops: points.length,
 	buffer: bufferInKm,
-	bbox: bboxFlip.toString(),
+	bboxes: [bbox],
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 }
 
-console.log(JSON.stringify(out));
+console.log(JSON.stringify(out,null,4));
