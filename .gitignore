@@ -2,3 +2,4 @@
 data/*
 gtfs2bbox/node_modules/
 gtfs2bbox/data
+gtfs2bbox/osm

@@ -54,10 +54,19 @@ var squareGrid = turf.squareGrid(convexBbox, 15, {mask: convexBuff, units: 'kilo
 
 //console.log(JSON.stringify(squareGrid))
 
-console.log({
+var bboxes = squareGrid.features.map((f)=> {
+	return turf.bbox(f);
+	//return bboxFlip(turf.bbox(f));
+});
+
+var out = {
 	stops: points.length,
 	buffer: bufferInKm,
-	bboxes: squareGrid.features.map((f)=>{
-		return bboxFlip(turf.bbox(f));
-	})
-});
+	bboxes: bboxes
+}
+
+console.log(JSON.stringify(out));
+
+/*
+console.log('https://overpass-api.de/api/map?bbox='+bboxes[0].toString())
+console.log('https://overpass-api.de/api/map?bbox='+bboxes[1].toString())*/

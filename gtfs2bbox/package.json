@@ -11,6 +11,7 @@
   "dependencies": {
     "@transit/gtfs": "^3.0.0",
     "@turf/turf": "^5.1.6",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "node-fetch": "^2.6.0"
   }
 }

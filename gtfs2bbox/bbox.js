@@ -39,9 +39,11 @@ var bbox = turf.bbox(bboxBuff);
 
 var bboxFlip = bboxFlip(bbox);
 
-console.log({
+var out = {
 	stops: points.length,
 	buffer: bufferInKm,
 	bbox: bboxFlip.toString(),
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
-});
+}
+
+console.log(JSON.stringify(out));
