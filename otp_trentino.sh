@@ -1,7 +1,8 @@
 #!/bin/bash
 #this create a docker image with otp with Trentino data.
 
-DATE=$(date +%Y%m%d)
+#original: https://gist.github.com/zabuTNT/73ddf2d5e520db75751185cba854417a
+#
 BASE=otp/
 FOLDER=data
 DIR=$BASE$FOLDER
@@ -37,12 +38,12 @@ echo "**/*.osm
 #unzip -o srtm_39_03.zip -x "*.tfw" "*.hdr" "*.txt" -d $DIR
 
 #build graph
-docker run \
-        -e JAVA_MX=16G \
-        -v $PWD/$DIR:/data \
-        -p $PORT:8080 \
-        openmove/opentripplanner:1.4.1 \
-	otp --build /data
+# docker run \
+#         -e JAVA_MX=16G \
+#         -v $PWD/$DIR:/data \
+#         -p $PORT:8080 \
+#         openmove/opentripplanner:1.4.1 \
+# 	otp.sh --build /data
 
 mkdir -p $DIR/openmove/
 
@@ -50,12 +51,14 @@ mkdir -p $DIR/openmove/
 cp $DIR/Graph.obj $DIR/openmove/
 rm -f $DIR/Graph.obj
 
-#build docker image
+#build docker image of otp
 docker build -t otp $BASE
+
+
 #RUN WITH
 #docker run \
 #   -e JAVA_MX=4G \
 #   -p 8080:8080 \
 #   otp:latest \
-#   otp --graphs /data --router openmove --server
+#   otp.sh --graphs /data --router openmove --server
 ######
