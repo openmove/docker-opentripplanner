@@ -11,7 +11,6 @@
   "dependencies": {
     "@transit/gtfs": "^3.0.0",
     "@turf/turf": "^5.1.6",
-    "axios": "^0.19.2",
     "lodash": "^4.17.19",
     "queue": "^6.0.1",
     "wget-improved": "^3.2.1"
