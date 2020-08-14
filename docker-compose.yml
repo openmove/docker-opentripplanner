@@ -22,4 +22,4 @@ services:
     volumes:
       - ./data/:/data/
       #TODO - ./log/:/log/
-    restart: always
+    #restart: no

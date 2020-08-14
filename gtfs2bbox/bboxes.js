@@ -12,6 +12,8 @@ var pp = [];
 
 const bufferInKm = 10;	//TODO as external param
 const prec = 6;
+const gridSize = process.argv[3] || 15;
+
 
 function bboxFlip(bb) {
 	return [bb[1],bb[0], bb[3],bb[2]];
@@ -48,9 +50,9 @@ var convexBuff = turf.buffer(convex, bufferInKm, {units:'kilometers'})
 var convexBbox = turf.bbox(convexBuff);
 
 //15km of tasselation bboxes
-var squareGrid = turf.squareGrid(convexBbox, 15, {mask: convexBuff, units: 'kilometers'});
+var squareGrid = turf.squareGrid(convexBbox, gridSize, {mask: convexBuff, units: 'kilometers'});
 
-//DEBUG writeGeo('grid.geojson', squareGrid);
+writeGeo('grid'+gridSize+'.geojson', squareGrid);
 
 //console.log(JSON.stringify(squareGrid))
 

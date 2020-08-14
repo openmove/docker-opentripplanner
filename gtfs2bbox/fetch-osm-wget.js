@@ -39,28 +39,36 @@ function bbox2file(bbox) {
 
 function downloadBbox(bbox) {
     return function(cb) {
-       
-        var url = bbox2url(bbox),
-            file = bbox2file(bbox);
+        try
+        {
+            var url = bbox2url(bbox),
+                file = bbox2file(bbox);
 
-        if(fs.existsSync(file))
-            fs.unlinkSync(file);
+            if(fs.existsSync(file)) {
+                console.log('just done', file);
+                cb();
+                return;//fs.unlinkSync(file);
+            }
 
-        var download = wget.download(url, file);
+            var download = wget.download(url, file);
 
-        download.on('end', function(output) {
-            console.log('done!', file);
-            cb();
-        });
-        download.on('start', function(fileSize) {
-            console.log('start...', url)
-        });
-      /*  download.on('progress', function(progress) {
-            console.log('progress...',progress)
-        });*/
-        download.on('error', function(err) {
-            console.log('ERROR',err,url);
-        }); 
+            download.on('end', function(output) {
+                console.log('done', file);
+                cb();
+            });
+            download.on('start', function(fileSize) {
+                console.log('start...', url)
+            });
+          /*  download.on('progress', function(progress) {
+                console.log('progress...',progress)
+            });*/
+            download.on('error', function(err) {
+                console.log('error',err,url);
+            });
+
+        } catch(err) {
+            console.log('ERROR', err)
+        }
     };
 };
 
@@ -81,7 +89,7 @@ process.stdin.on('end', function () {
     
     var q = queue();
 
-    q.concurrency = 3;
+    q.concurrency = 2;
 
     bboxes.forEach(b => {
         q.push( downloadBbox(b) );
