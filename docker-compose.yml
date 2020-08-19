@@ -7,19 +7,26 @@ networks:
 services:
   otp:
     container_name: openmove-otp
-    #ports: ["${PORT}:8080"]
     ports: ["8080:8080"]
     image: openmove/opentripplanner:1.4.1
-    # build:
-    #   args:
-    #       #TODO CONFIG: ./conf/config.json
-    #       #TODO LOG_FILE: ./log/access.log
     environment:
-      #TODO - JAVA_OPTIONS=-Xmx4G      
-      - ENV BRANCH=v1.4.0
+      - BUILD_GRAPH=False
+      - JAVA_MX=2G
+      - BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
-      - JAVA_MX=4G
     volumes:
       - ./data/:/data/
-      #TODO - ./log/:/log/
+    #restart: always
+
+  otp-build:
+    container_name: openmove-otp-build
+    ports: ["9090:8080"]
+    image: openmove/opentripplanner:1.4.1
+    environment:
+      - BUILD_GRAPH=True
+      - JAVA_MX=10G
+      - ENV BRANCH=v1.4.0
+      - BRANCH_ALIAS=1.4.0
+    volumes:
+      - ./data/:/data/
     #restart: no

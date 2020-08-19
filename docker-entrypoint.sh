@@ -1,37 +1,35 @@
 #!/usr/bin/env bash
-#
-##TODO  based from Openrouteservice entrypoint
 
-# graphs=/data/graphs
-# tomcat_appconfig=/usr/local/tomcat/webapps/ors/WEB-INF/classes/app.config
-# source_appconfig=/ors-core/openrouteservice/src/main/resources/app.config
+if [ "${BUILD_GRAPH}" = "True" ]; then
+	#TODO rm -rf ${graphs}/*
+	#TODO make a backup of exists graph
+ 
+	#TODO check gtfs data
+	
+	#TODO check OSM if data is downloaded...
+	#
+	# TODO use scripts in ./gtfs2bbox after dowloaded gtfs data
+	# bbox.js, bboxes.js and fetch-osm-wget.js or 
+	# #curl 'https://overpass-api.de/api/map?bbox=10.4233,45.6601,11.9778,46.4908' -o $DIR/trento.OSM
 
-# if [ -z "${CATALINA_OPTS}" ]; then
-# 	export CATALINA_OPTS="-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9001 -Dcom.sun.management.jmxremote.rmi.port=9001 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost"
-# fi
+	#TODO check srtm data and download by bbox of gtfs
+	##curl http://srtm.csi.cgiar.org/wp-content/uploads/files/srtm_5x5/TIFF/srtm_39_03.zip -L -o /tmp/srtm_39_03.zip
+	#unzip -o srtm_39_03.zip -x "*.tfw" "*.hdr" "*.txt" -d $DIR
+	
+	#BUILD GRAPH
+	otp.sh --build /data --inMemory
 
-# if [ -z "${JAVA_OPTS}" ]; then
-# 	export JAVA_OPTS="-Djava.awt.headless=true -server -XX:TargetSurvivorRatio=75 -XX:SurvivorRatio=64 -XX:MaxTenuringThreshold=3 -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ParallelGCThreads=4 -Xms1g -Xmx2g"
-# fi
+	#TODO check graph valid,size,bounding box
 
-# echo "CATALINA_OPTS=\"$CATALINA_OPTS\"" > /usr/local/tomcat/bin/setenv.sh
-# echo "JAVA_OPTS=\"$JAVA_OPTS\"" >> /usr/local/tomcat/bin/setenv.sh
+	exit 0
+	#EXIT on graph generated
+	#
+	#TODO shutdown the machine and log it
+fi
 
-# if [ "${BUILD_GRAPHS}" = "True" ]; then
-#   rm -rf ${graphs}/*
-# fi
-
-# # if Tomcat built before, copy the mounted app.config to the Tomcat webapp app.config, else copy it from the source
-# if [ -d "/usr/local/tomcat/webapps/ors" ]; then
-# 	cp -f /ors-conf/app.config $tomcat_appconfig
-# else
-# #PATCH	cp -f $source_appconfig /ors-conf/app.config
-# 	echo "### Package openrouteservice and deploy to Tomcat ###"
-# 	mvn -q -f /ors-core/openrouteservice/pom.xml package -DskipTests && \
-# 	cp -f /ors-core/openrouteservice/target/*.war /usr/local/tomcat/webapps/ors.war
-# fi
-
-# /usr/local/tomcat/bin/catalina.sh run
-
-# # Keep docker running easy
-# exec "$@"
+if ! test -f /data/Graph.obj; then
+	echo "graph not exists, build a new graph!"
+	exit 1
+else
+	otp.sh --graphs /data --router openmove --server
+fi
