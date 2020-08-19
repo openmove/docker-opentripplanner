@@ -13,9 +13,9 @@ COPY otp.sh /usr/local/bin/
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN chmod 755 /usr/local/bin/*
+RUN chmod 755 /usr/local/bin/otp.sh
+RUN chmod 755 /docker-entrypoint.sh
 
 EXPOSE 8080
-
 ENTRYPOINT ["/bin/bash"]
 CMD ["/docker-entrypoint.sh"]

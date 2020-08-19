@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 if [ "${BUILD_GRAPH}" = "True" ]; then
 	#TODO rm -rf ${graphs}/*
 	#TODO make a backup of exists graph
