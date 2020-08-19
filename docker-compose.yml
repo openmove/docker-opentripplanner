@@ -20,7 +20,7 @@ services:
 
   otp-build:
     container_name: openmove-otp-build
-    ports: ["9090:8080"]
+    ports: ["8090:8080"]
     image: openmove/opentripplanner:1.4.1
     environment:
       - BUILD_GRAPH=True
