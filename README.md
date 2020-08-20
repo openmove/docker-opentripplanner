@@ -1,8 +1,18 @@
 
 # OpenTripPlanner Openmove Docker Services
 
-This project contains a Docker image for stable
+This project contains a Docker images for stable
 [OpenTripPlanner](http://opentripplanner.org) releases.
+*docker-compose* is required.
+
+## Services
+
+defined in docker-compose.yml
+
+```otp-build``` build a new OTP graph by /data directory
+
+```otp``` run a new instance of OTP by /data
+
 
 ## Scripts
 
