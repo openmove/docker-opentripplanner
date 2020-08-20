@@ -8,10 +8,10 @@ services:
   otp:
     container_name: openmove-otp
     ports: ["8080:8080"]
-    image: openmove/opentripplanner:1.4.1
+    image: openmove/opentripplanner:1.4.2
     environment:
       - BUILD_GRAPH=False
-      - JAVA_MX=2G
+      - JAVA_MX=4G
       - BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
     volumes:
@@ -21,7 +21,7 @@ services:
   otp-build:
     container_name: openmove-otp-build
     ports: ["8090:8080"]
-    image: openmove/opentripplanner:1.4.1
+    image: openmove/opentripplanner:1.4.2
     environment:
       - BUILD_GRAPH=True
       - JAVA_MX=10G

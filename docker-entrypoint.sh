@@ -16,7 +16,9 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	#unzip -o srtm_39_03.zip -x "*.tfw" "*.hdr" "*.txt" -d $DIR
 	
 	#BUILD GRAPH
-	otp.sh --build /data --inMemory
+	otp.sh --build /data
+	mkdir /data/openmove/
+	cp /data/Graph.obj /data/openmove/Graph.obj
 
 	#TODO check graph valid,size,bounding box
 
@@ -26,9 +28,9 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	#TODO shutdown the machine and log it
 fi
 
-if ! test -f /data/Graph.obj; then
+if ! test -f /data/openmove/Graph.obj; then
 	echo "graph not exists, build a new graph!"
 	exit 1
 else
-	otp.sh --graphs /data --router openmove --server
+	otp.sh --graphs /data --router openmove --server 
 fi

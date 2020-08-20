@@ -1,10 +1,13 @@
-FROM maven:3-jdk-8
+FROM openjdk:8-jre-alpine3.9
 
 MAINTAINER openmove <info@openmove.com>
 
 ENV BRANCH=v1.4.0 \
     BRANCH_ALIAS=1.4.0 \
     JAVA_MX=4G
+
+RUN apk update
+RUN apk add bash
 
 RUN mkdir -p /usr/local/share/java
 
@@ -13,7 +16,7 @@ COPY otp.sh /usr/local/bin/
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-RUN chmod 755 /usr/local/bin/otp.sh
+RUN chmod 755 /usr/local/bin/*
 RUN chmod 755 /docker-entrypoint.sh
 
 EXPOSE 8080
