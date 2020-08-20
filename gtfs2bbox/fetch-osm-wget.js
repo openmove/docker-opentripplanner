@@ -18,6 +18,7 @@ function bbox2url(bbox) {
 
     //list https://wiki.openstreetmap.org/wiki/Overpass_API
     var ss = [
+    /* uncomment to use more data sources */
             'https://overpass-api.de',
             'https://z.overpass-api.de',
             'https://lz4.overpass-api.de',
