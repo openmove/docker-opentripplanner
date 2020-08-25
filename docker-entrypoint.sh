@@ -29,7 +29,9 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	mkdir -p /data/openmove
 
 	if [ -f /data/Graph.obj ]; then
-		cp /data/Graph.obj /data/openmove/Graph.obj
+		cp -f /data/Graph.obj /data/openmove/Graph.obj
+		#backup graph
+		mv /data/Graph.obj $(date +"/data/Graph.%m-%d-%y.obj")
 	else
 		echo "Error to build graph!"
 		exit 1
