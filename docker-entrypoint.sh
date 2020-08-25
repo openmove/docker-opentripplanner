@@ -30,7 +30,7 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 
 	if [ -f /data/Graph.obj ]; then
 		
-		if [ "${BACKUP_GRAPH}" = "True"]; then
+		if [ "${BACKUP_GRAPH}" = "True" ]; then
 			backfile=$(date +"Graph.obj.%y-%m-%d.tgz")
 			echo "Create new backup... $backfile"
 			tar -C /data -czf $backfile Graph.obj
