@@ -11,6 +11,7 @@ services:
     image: openmove/opentripplanner:1.4.2
     environment:
       - BUILD_GRAPH=False
+      - DOWNLOAD_DATA=False
       - JAVA_MX=4G
       - BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
@@ -24,6 +25,7 @@ services:
     image: openmove/opentripplanner:1.4.2
     environment:
       - BUILD_GRAPH=True
+      #TODO - DOWNLOAD_DATA=True
       - JAVA_MX=10G
       - ENV BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0

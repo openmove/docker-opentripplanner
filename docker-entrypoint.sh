@@ -17,7 +17,7 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	
 	#BUILD GRAPH
 	otp.sh --build /data
-	mkdir /data/openmove/
+	mkdir -p /data/openmove
 	cp /data/Graph.obj /data/openmove/Graph.obj
 
 	#TODO check graph valid,size,bounding box
