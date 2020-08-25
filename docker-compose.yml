@@ -27,7 +27,7 @@ services:
       - BUILD_GRAPH=True
       #TODO - DOWNLOAD_DATA=True
       - JAVA_MX=10G
-      - ENV BRANCH=v1.4.0
+      - BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
     volumes:
       - ./data/:/data/

@@ -64,7 +64,10 @@ var bboxes = squareGrid.features.map((f)=> {
 var out = {
 	stops: points.length,
 	buffer: bufferInKm,
-	bboxes: bboxes
+	bboxes: bboxes,
+	overpass: bboxes.map((b)=> {
+		return 'https://overpass-api.de/api/map?bbox='+(bboxFlip(b)).toString();
+	})
 }
 
 console.log(JSON.stringify(out));

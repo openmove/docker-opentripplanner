@@ -1,11 +1,11 @@
 
 const fs = require('fs');
 
-const turf = require('@turf/turf');
+const turf = require('@turf/turf');	//https://github.com/turfjs
 
-const { Gtfs } = require('@transit/gtfs');
+const { Gtfs } = require('@transit/gtfs');	//https://github.com/TransitApp/gtfsNodeLib
 
-const gtfs = new Gtfs(process.argv[2]);
+const gtfs = new Gtfs(process.argv[2]);	//pass gtfs unzip directory
 
 var points = [];
 var pp = [];
@@ -43,6 +43,7 @@ var out = {
 	stops: points.length,
 	buffer: bufferInKm,
 	bboxes: [bbox],
+	overpass: 'https://overpass-api.de/api/map?bbox='+bboxFlip.toString(),
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 }
 
