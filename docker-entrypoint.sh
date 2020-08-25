@@ -29,8 +29,13 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	mkdir -p /data/openmove
 
 	if [ -f /data/Graph.obj ]; then
-		#backup graph
-		tar czvf $(date +"/data/Graph.obj.%m-%d-%y.tgz") /data/Graph.obj
+		
+		if [ "${BACKUP_GRAPH}" = "True"]; then
+			backfile=$(date +"Graph.obj.%y-%m-%d.tgz")
+			echo "Create new backup... $backfile"
+			tar -C /data -czf $backfile Graph.obj
+		fi
+
 		mv -f /data/Graph.obj /data/openmove/Graph.obj 
 	else
 		echo "Error to build graph!"

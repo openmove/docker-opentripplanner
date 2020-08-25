@@ -25,10 +25,12 @@ services:
     image: openmove/opentripplanner:1.4.2
     environment:
       - BUILD_GRAPH=True
-      #TODO - DOWNLOAD_DATA=True
+      - BACKUP_GRAPH=True
+      - DOWNLOAD_DATA=True
       - JAVA_MX=10G
       - BRANCH=v1.4.0
       - BRANCH_ALIAS=1.4.0
     volumes:
       - ./data/:/data/
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh
     #restart: no
