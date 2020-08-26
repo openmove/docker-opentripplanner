@@ -69,7 +69,7 @@ var out = {
 	})
 }
 
-if(process.argv.indexOf('--overpass'))
+if(process.argv.indexOf('--overpass')>-1)
 	console.log(out.overpass.join("\n"));
 else
 	console.log(JSON.stringify(out,null,4));
