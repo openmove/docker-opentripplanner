@@ -47,4 +47,7 @@ var out = {
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 }
 
-console.log(JSON.stringify(out,null,4));
+if(process.argv.indexOf('--overpass'))
+	console.log(out.overpass);
+else
+	console.log(JSON.stringify(out,null,4));

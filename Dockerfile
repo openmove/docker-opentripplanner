@@ -11,6 +11,8 @@ RUN apk add bash
 
 RUN mkdir -p /usr/local/share/java
 
+#TODO download and compile java sources
+
 COPY otp.jar /usr/local/share/java/otp.jar
 COPY otp.sh /usr/local/bin/
 

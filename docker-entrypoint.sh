@@ -1,14 +1,25 @@
 #!/usr/bin/env bash
-
-GRAPH_PATH=
-
-if [ "${BUILD_GRAPH}" = "True" ]; then
-	#TODO rm -rf ${graphs}/*
-	#TODO make a backup of exists graph
- 
-	#TODO check gtfs data
+#
+if [ "${DOWNLOAD_DATA}" = "True" ]; then
 	
-	#TODO check OSM if data is downloaded...
+
+	if [ -f "/data/${GTFS_FILE}" ]; then
+
+		zipfile="/data/${GTFS_FILE}"
+		unzipdir=${zipfile%.zip}
+
+		mkdir -p $unzipdir
+		#TODO manage multiple gtfs zipfiles
+
+		echo "unzip gtfs file... ${zipfile}"
+
+		unzip -qo -d $unzipdir $zipfile
+
+		node gtfs2bbox/bbox.js $unzipdir
+
+	else
+		echo "No such zipped gtfs file /data/${GTFS_FILE}"
+	fi
 	#
 	# TODO use scripts in ./gtfs2bbox after dowloaded gtfs data
 	# bbox.js, bboxes.js and fetch-osm-wget.js or 
@@ -19,7 +30,11 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 	#TODO check srtm data and download by bbox of gtfs
 	##curl http://srtm.csi.cgiar.org/wp-content/uploads/files/srtm_5x5/TIFF/srtm_39_03.zip -L -o /tmp/srtm_39_03.zip
 	#unzip -o srtm_39_03.zip -x "*.tfw" "*.hdr" "*.txt" -d $DIR
-	
+fi
+
+if [ "${BUILD_GRAPH}" = "True" ]; then
+	#TODO check gtfs data
+
 	#TODO use build-config.json
 	# https://docs.opentripplanner.org/en/latest/Configuration/
 

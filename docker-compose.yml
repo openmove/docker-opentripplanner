@@ -8,13 +8,13 @@ services:
   otp:
     container_name: openmove-otp
     ports: ["8080:8080"]
-    image: openmove/opentripplanner:1.4.2
+    #image: openmove/opentripplanner:1.4.2  #online version
+    image: openmove_otp:latest
+    build:
+      context: ./
     environment:
       - BUILD_GRAPH=False
-      - DOWNLOAD_DATA=False
       - JAVA_MX=4G
-      - BRANCH=v1.4.0
-      - BRANCH_ALIAS=1.4.0
     volumes:
       - ./data/:/data/
     #restart: always
@@ -22,15 +22,17 @@ services:
   otp-build:
     container_name: openmove-otp-build
     ports: ["8090:8080"]
-    image: openmove/opentripplanner:1.4.2
+    #image: openmove/opentripplanner:1.4.2  #online version
+    image: openmove_otp:latest
+    build:
+      context: ./
     environment:
-      - BUILD_GRAPH=True
-      - BACKUP_GRAPH=True
+      - GTFS_FILE=200804_ExportGTFS.zip
       - DOWNLOAD_DATA=True
+      - BUILD_GRAPH=False
+      - BACKUP_GRAPH=True
       - JAVA_MX=10G
-      - BRANCH=v1.4.0
-      - BRANCH_ALIAS=1.4.0
     volumes:
       - ./data/:/data/
-      #only debug - ./docker-entrypoint.sh:/docker-entrypoint.sh
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh
     #restart: no
