@@ -1,3 +1,7 @@
+/*
+    parallel downloader of openstreetmap data
+    from a list of bounding boxes 
+ */
 const fs = require('fs');
 const queue = require('queue');
 const wget = require('wget-improved');  //https://github.com/bearjaws/node-wget

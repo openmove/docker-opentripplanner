@@ -17,6 +17,7 @@ services:
       - JAVA_MX=4G
     volumes:
       - ./data/:/data/
+      - ./docker-entrypoint.sh:/docker-entrypoint.sh
     #restart: always
 
   otp-build:
@@ -27,7 +28,7 @@ services:
     build:
       context: ./
     environment:
-      - GTFS_FILE=200804_ExportGTFS.zip
+      - GTFS_FILE=200804_ExportGTFS.zip #only for automatic download of osm data
       - DOWNLOAD_DATA=True
       - BUILD_GRAPH=False
       - BACKUP_GRAPH=True

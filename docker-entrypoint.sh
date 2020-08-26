@@ -1,21 +1,36 @@
 #!/usr/bin/env bash
 #
 if [ "${DOWNLOAD_DATA}" = "True" ]; then
-	
 
+	echo "Download terrain model SRTM..."
+	curl "http://srtm.csi.cgiar.org/wp-content/uploads/files/srtm_5x5/TIFF/srtm_39_03.zip" -L -o /data/srtm_39_03.zip
+	unzip -qo -d /data /tmp/srtm_39_03.zip -x "*.tfw" "*.hdr" "*.txt"
+	
 	if [ -f "/data/${GTFS_FILE}" ]; then
 
 		zipfile="/data/${GTFS_FILE}"
-		unzipdir=${zipfile%.zip}
+		unzipdir="${zipfile%.zip}"
 
-		mkdir -p $unzipdir
+		if [ ! -d $unzipdir ]; then
+
+			mkdir -p $unzipdir
+			echo "unzip gtfs file... ${zipfile}"
+
+			unzip -qo -d "$unzipdir" "$zipfile"
+		fi
 		#TODO manage multiple gtfs zipfiles
+		#echo "TODO download based on gtfs bbox"
+		#osmurl=$(node gtfs2bbox/bbox.js $unzipdir --overpass)
+		#print only overpass url to download data
 
-		echo "unzip gtfs file... ${zipfile}"
+		#echo "Openstreetmap download url: ${osmurl}"
 
-		unzip -qo -d $unzipdir $zipfile
+		#echo $osmurl > /data/osm.url
 
-		node gtfs2bbox/bbox.js $unzipdir
+		#if [ -f /data/osm.url ]; then
+		#	curl 'https://overpass-api.de/api/map?bbox=10.4233,45.6601,11.9778,46.4908' -o $DIR/trento.osm
+		#fi
+		#
 
 	else
 		echo "No such zipped gtfs file /data/${GTFS_FILE}"
@@ -65,7 +80,7 @@ if [ "${BUILD_GRAPH}" = "True" ]; then
 fi
 
 if [ ! -f /data/openmove/Graph.obj ]; then
-	echo "graph not exists, build a new graph!"
+	echo "File not found! /data/openmove/Graph.obj build a new graph!"
 	exit 1
 else
 	otp.sh --graphs /data --router openmove --server

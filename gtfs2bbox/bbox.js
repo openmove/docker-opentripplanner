@@ -10,7 +10,7 @@ const gtfs = new Gtfs(process.argv[2]);	//pass gtfs unzip directory
 var points = [];
 var pp = [];
 
-const bufferInKm = 5;	//TODO as external param
+const bufferInKm = process.argv[3] || 5;	//TODO as external param
 const prec = 6;
 
 function bboxFlip(bb) {
@@ -39,15 +39,19 @@ var bbox = turf.bbox(bboxBuff);
 
 var bboxFlip = bboxFlip(bbox);
 
+var bboxoverpass = bbox;
+//curl 'https://overpass-api.de/api/map?bbox=10.4233,45.6601,11.9778,46.4908' -o $DIR/trento.osm
+
+
 var out = {
 	stops: points.length,
 	buffer: bufferInKm,
 	bboxes: [bbox],
-	overpass: 'https://overpass-api.de/api/map?bbox='+bboxFlip.toString(),
+	overpass: 'https://overpass-api.de/api/map?bbox='+bboxoverpass.toString(),
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 }
 
 if(process.argv.indexOf('--overpass'))
-	console.log(out.overpass);
+	process.stdout.write(out.overpass);
 else
 	console.log(JSON.stringify(out,null,4));

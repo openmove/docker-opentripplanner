@@ -24,8 +24,16 @@ output:
 }
 ```
 
+
+## DOWNLOAD data
+
+```bash
+curl $(node bbox.js data/200804_ExportGTFS --overpass) -o data/data.osm
+```
+
+## DOWNLOAD using multiple parallel bboxes
+
 generate multiple sub bounding boxes, removing areas without gtfs and download osm data
 ```bash
 $ node bboxes.js ./data | node fetch-osm-wget.js
 ```
-
