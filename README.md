@@ -62,7 +62,7 @@ node bboxes.js ../data/200804_ExportGTFS  | node fetch-osm-wget.js
 ## First build Graph and Cache
 
 ```bash
-docker-compose up otp-build
+docker-compose up build
 ```
 
 ## Execute OTP instance

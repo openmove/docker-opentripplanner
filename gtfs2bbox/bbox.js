@@ -10,8 +10,8 @@ const gtfs = new Gtfs(process.argv[2]);	//pass gtfs unzip directory
 var points = [];
 var pp = [];
 
-const bufferInKm = process.argv[3] || 5;	//TODO as external param
 const prec = 6;
+const bufferInKm = parseInt(process.argv[3]) || 5;	//TODO as external param
 
 function bboxFlip(bb) {
 	return [bb[1],bb[0], bb[3],bb[2]];

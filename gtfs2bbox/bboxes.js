@@ -10,10 +10,9 @@ const gtfs = new Gtfs(process.argv[2]);
 var points = [];
 var pp = [];
 
-const bufferInKm = 10;	//TODO as external param
 const prec = 6;
-const gridSize = process.argv[3] || 15;
-
+const bufferInKm = parseInt(process.argv[3]) || 5;	//TODO as external param
+const gridSize = parseInt(process.argv[4]) || 30;
 
 function bboxFlip(bb) {
 	return [bb[1],bb[0], bb[3],bb[2]];
@@ -41,7 +40,7 @@ var bbox = turf.bbox(bboxBuff);
 
 var bboxFlip = bboxFlip(bbox);
 */
-
+ 
 /* MULTIPLE SUB BBOXES */
 var convex = turf.convex(multiPoint, {maxEdge:1, units:'kilometers'});
 //TODO var convexSimply = turf.simplify(convexBuff, {tolerance: 0.01, highQuality: false});
@@ -52,7 +51,7 @@ var convexBbox = turf.bbox(convexBuff);
 //15km of tasselation bboxes
 var squareGrid = turf.squareGrid(convexBbox, gridSize, {mask: convexBuff, units: 'kilometers'});
 
-writeGeo('grid'+gridSize+'.geojson', squareGrid);
+//writeGeo('grid'+gridSize+'.geojson', squareGrid);
 
 //console.log(JSON.stringify(squareGrid))
 
@@ -66,12 +65,11 @@ var out = {
 	buffer: bufferInKm,
 	bboxes: bboxes,
 	overpass: bboxes.map((b)=> {
-		return 'https://overpass-api.de/api/map?bbox='+(bboxFlip(b)).toString();
+		return 'https://overpass-api.de/api/map?bbox='+(b).toString();
 	})
 }
 
-console.log(JSON.stringify(out));
-
-/*
-console.log('https://overpass-api.de/api/map?bbox='+bboxes[0].toString())
-console.log('https://overpass-api.de/api/map?bbox='+bboxes[1].toString())*/
+if(process.argv.indexOf('--overpass'))
+	console.log(out.overpass.join("\n"));
+else
+	console.log(JSON.stringify(out,null,4));
