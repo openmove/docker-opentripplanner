@@ -5,7 +5,9 @@ const turf = require('@turf/turf');
 
 const { Gtfs } = require('@transit/gtfs');
 
-const gtfs = new Gtfs(process.argv[2]);
+const gtfspath = process.argv[2];
+
+const gtfs = new Gtfs(gtfspath);
 
 var points = [];
 var pp = [];
@@ -28,7 +30,6 @@ gtfs.forEachStop((stop) => {
 
 var multiPoint = turf.multiPoint(points);
 
-//DEBUG writeGeo('multiPoint.geojson', multiPoint);
 /* SIMPLE ONE BBOX
 var bboxPoints = turf.bbox(multiPoint);
 
@@ -69,7 +70,11 @@ var out = {
 	})
 }
 
-if(process.argv.indexOf('--overpass')>-1)
+if(process.argv.indexOf('--overpass')>-1) {
 	console.log(out.overpass.join("\n"));
+}
+else if (process.argv.indexOf('--geojson')>-1) {
+	process.stdout.write(JSON.stringify(multiPoint));
+}
 else
 	console.log(JSON.stringify(out,null,4));
