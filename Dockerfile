@@ -12,7 +12,9 @@ RUN apk --no-cache add bash curl
 
 RUN mkdir -p /usr/local/share/java
 
-#TODO download and compile java sources
+#TODO download jar
+#https://repo1.maven.org/maven2/org/opentripplanner/otp/1.4.0/otp-1.4.0-shaded.jar
+
 
 COPY otp.jar /usr/local/share/java/otp.jar
 COPY otp.sh /usr/local/bin/
