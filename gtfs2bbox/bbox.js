@@ -27,7 +27,6 @@ gtfs.forEachStop((stop) => {
 
 var multiPoint = turf.multiPoint(points);
 
-//DEBUG writeGeo('multiPoint.geojson', multiPoint);
 /* SIMPLE ONE BBOX */
 var bboxPoints = turf.bbox(multiPoint);
 
@@ -51,7 +50,11 @@ var out = {
 	bboxfinder: 'http://bboxfinder.com/#'+bboxFlip.toString()
 }
 
-if(process.argv.indexOf('--overpass')>-1)
+if(process.argv.indexOf('--overpass')>-1) {
 	process.stdout.write(out.overpass);
+}
+else if (process.argv.indexOf('--stops')>-1) {
+	process.stdout.write(JSON.stringify(multiPoint));
+}
 else
 	console.log(JSON.stringify(out,null,4));
