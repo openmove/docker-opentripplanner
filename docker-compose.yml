@@ -33,7 +33,7 @@ services:
     environment:
       - GTFS_FILE=200804_ExportGTFS.zip
       #only for automatic download of osm/srtm data
-      - DOWNLOAD_DATA=True
+      - DOWNLOAD_DATA=False
       #download openstreetmap and terrain model data around the GTFS_FILE 
       - BUILD_GRAPH=True
       #create new Graph.obj from /data
