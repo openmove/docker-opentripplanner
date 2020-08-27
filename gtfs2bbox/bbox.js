@@ -53,7 +53,7 @@ var out = {
 if(process.argv.indexOf('--overpass')>-1) {
 	process.stdout.write(out.overpass);
 }
-else if (process.argv.indexOf('--geojson')>-1) {
+else if (process.argv.indexOf('--stops')>-1) {
 	process.stdout.write(JSON.stringify(multiPoint));
 }
 else
