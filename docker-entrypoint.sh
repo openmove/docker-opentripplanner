@@ -28,6 +28,8 @@ if [ "${DOWNLOAD_DATA}" = "True" ]; then
 			unzip -qo -d "$unzipdir" "$zipfile"
 		fi
 
+		#TODO dockerize or include in same image gtfs2bbox
+
 		#TODO manage multiple gtfs zipfiles
 		#echo "TODO download based on gtfs bbox"
 		#osmurl=$(node gtfs2bbox/bbox.js $unzipdir --overpass)
