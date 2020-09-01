@@ -50,6 +50,9 @@ if [ "${DOWNLOAD_DATA}" = "True" ]; then
 			done < /data/osm.url
 		fi
 		#
+		#TODO join osm files into one:(osmconvert is faster than otp)
+		#	osmconvert *.osm  -o=../trentino.osm
+		#
 		#TEST POVO little bbox curl 'https://overpass-api.de/api/map?bbox=11.145640,46.058827,11.166111,46.070020' -o ./data/povo.osm
 	else
 		echo "File GTFS not found! /data/${GTFS_FILE}"
