@@ -14,10 +14,11 @@ services:
       context: ./
     environment:
       - BUILD_GRAPH=False
-      - JAVA_MX=4G
+      - JAVA_MX=2G
       - OTP_START=True      
     volumes:
       - ./data/:/data/
+      #/opt/odh-mentor-otp/:/data/
       - ./docker-entrypoint.sh:/docker-entrypoint.sh
       #uncomment to test script
 
@@ -41,5 +42,6 @@ services:
       - OTP_START=False
     volumes:
       - ./data/:/data/
+      #/opt/odh-mentor-otp/:/data/
       - ./docker-entrypoint.sh:/docker-entrypoint.sh
       #uncomment to test script
