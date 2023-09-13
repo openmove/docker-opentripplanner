@@ -2,8 +2,8 @@ FROM maven:3-jdk-8
 
 MAINTAINER openmove <info@openmove.com>
 
-ENV BRANCH=v1.4.0 \
-    BRANCH_ALIAS=1.4.0 \
+ENV BRANCH=v1.5.23 \
+    BRANCH_ALIAS=1.5.23 \
     JAVA_MX=2G
 RUN mkdir -p /usr/local/share/java
 COPY otp.jar /usr/local/share/java/otp.jar
