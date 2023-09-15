@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-alpine3.9
+FROM maven:3-jdk-8
 #TODO https://github.com/timbru31/docker-java-node
 
 MAINTAINER openmove <info@openmove.com>
